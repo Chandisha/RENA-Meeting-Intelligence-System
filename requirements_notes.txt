@@ -1,9 +1,24 @@
+# RENA - Meeting Intelligence System Dependencies
+
+# Core Audio & Transcription
 faster-whisper
-langchain-ollama
-reportlab
-loguru
 librosa
-scikit-learn
 numpy
-pathlib
-typing-extensions
+soundfile
+
+# AI & LLM Orchestration
+langchain-ollama
+torch
+nemo_toolkit[asr]
+
+# Browser Automation (Pilot Bot)
+playwright
+playwright-stealth
+
+# PDF Generation & Reporting
+reportlab
+
+# Utilities
+loguru
+scikit-learn
+python-dotenv
