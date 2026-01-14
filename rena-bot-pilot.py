@@ -14,7 +14,7 @@ from playwright_stealth import Stealth
 try:
     from meeting_notes_generator import AdaptiveMeetingNotesGenerator
 except ImportError:
-    print("❌ Error: Could not find meeting_note_generator.py in the same directory.")
+    print("❌ Error: Could not find meeting_notes_generator.py in the same directory.")
     sys.exit(1)
 
 class RenaMeetingBot:
