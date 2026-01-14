@@ -10,6 +10,24 @@ from datetime import datetime
 from playwright.sync_api import sync_playwright
 from playwright_stealth import Stealth
 
+
+import pyperclip
+
+def is_meet_url(text: str) -> bool:
+    return isinstance(text, str) and text.startswith("https://meet.google.com/")
+
+def wait_for_meet_link_from_clipboard():
+    print("👀 Auto Mode ON: Copy Google Meet link (Ctrl+C) to start bot...")
+    last = ""
+    while True:
+        current = pyperclip.paste().strip()
+        if current != last and is_meet_url(current):
+            print(f"✅ Meet URL detected from clipboard: {current}")
+            return current
+        last = current
+        time.sleep(1)
+
+
 # Import your existing generator
 try:
     from meeting_notes_generator import AdaptiveMeetingNotesGenerator
@@ -204,12 +222,31 @@ class RenaMeetingBot:
         generator.process_meeting(str(self.recording_path))
         print("🎉 COMPLETE!")
 
+# if __name__ == "__main__":
+#     try:
+#         url = sys.argv[1] if len(sys.argv) > 1 else ""
+#         if not url:
+#             print("Usage: python rena_bot_pilot.py <MEET_URL>")
+#             sys.exit(1)
+#         RenaMeetingBot().join_google_meet(url)
+#     except KeyboardInterrupt:
+#         print("\n👋 Goodbye!")
+
 if __name__ == "__main__":
     try:
-        url = sys.argv[1] if len(sys.argv) > 1 else ""
-        if not url:
-            print("Usage: python rena_bot_pilot.py <MEET_URL>")
-            sys.exit(1)
-        RenaMeetingBot().join_google_meet(url)
+        if len(sys.argv) > 1 and sys.argv[1] == "--auto":
+            meet_url = wait_for_meet_link_from_clipboard()
+            RenaMeetingBot().join_google_meet(meet_url)
+
+        else:
+            url = sys.argv[1] if len(sys.argv) > 1 else ""
+            if not url:
+                print("Usage:")
+                print("  python rena_bot_pilot.py <MEET_URL>")
+                print("  python rena_bot_pilot.py --auto")
+                sys.exit(1)
+
+            RenaMeetingBot().join_google_meet(url)
+
     except KeyboardInterrupt:
         print("\n👋 Goodbye!")
