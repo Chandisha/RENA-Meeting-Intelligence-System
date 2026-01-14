@@ -12,7 +12,7 @@ from playwright_stealth import Stealth
 
 # Import your existing generator
 try:
-    from meeting_note_generator import AdaptiveMeetingNotesGenerator
+    from meeting_notes_generator import AdaptiveMeetingNotesGenerator
 except ImportError:
     print("❌ Error: Could not find meeting_note_generator.py in the same directory.")
     sys.exit(1)
