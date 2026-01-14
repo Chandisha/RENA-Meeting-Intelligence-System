@@ -22,3 +22,4 @@ reportlab
 loguru
 scikit-learn
 python-dotenv
+pyperclip
