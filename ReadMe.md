@@ -65,8 +65,8 @@ playwright install chromium
 To enable Hindi summaries in PDF reports:
 1.  Download **Noto Sans Devanagari** from [Google Fonts](https://fonts.google.com/specimen/Noto+Sans+Devanagari).
 2.  Extract the ZIP and locate the file `NotoSansDevanagari-VariableFont_wdth,wght.ttf`.
-3.  Create a folder named `src/fonts/` if it doesn't exist.
-4.  Move the `.ttf` file into `src/fonts/`.
+3.  Create a folder named `fonts/` if it doesn't exist.
+4.  Move the `.ttf` file into `fonts/`.
 
 ### 4. Setup Intelligence Hub (Ollama)
 Download and run Ollama from [ollama.com](https://ollama.com), then:
@@ -81,32 +81,31 @@ ollama pull qwen2.5:7b
 ### 🛫 Mode A: The Live Bot (Autopilot)
 Dispatch Rena to join any Google Meet link, record, and automatically generate notes:
 ```bash
-python src/rena_bot_pilot.py "https://meet.google.com/xxx-xxxx-xxx"
+python rena_bot_pilot.py "https://meet.google.com/xxx-xxxx-xxx"
 ```
 
 ### 📂 Mode B: File Processor (Manual)
 Process any pre-recorded `.wav` or `.mp3` meeting file:
 ```bash
-python src/meeting_notes_generator.py "path/to/meeting.wav"
+python meeting_notes_generator.py "path/to/meeting.wav"
 ```
 
 **With Language Override:**
 You can force a specific transcription language (e.g., Hindi):
 ```bash
-python src/meeting_notes_generator.py "path/to/meeting.wav" hi
+python meeting_notes_generator.py "path/to/meeting.wav" hi
 ```
 
 ---
 
 ## 📂 Project Directory Structure
 ```text
-VoiceAI-Rena/
-├── README.md               # Main documentation
+Rena-Meet/
+├── ReadMe.md               # Main documentation
 ├── requirements.txt        # All Python dependencies
-├── src/                    # Source code
-│   ├── meeting_notes_generator.py  # Core AI Engine (Neural Analysis)
-│   ├── rena_bot_pilot.py          # Google Meet Automation Bot
-│   └── fonts/                     # Hindi (Devanagari) fonts
+├── meeting_notes_generator.py  # Core AI Engine (Neural Analysis)
+├── rena_bot_pilot.py          # Google Meet Automation Bot
+├── fonts/                     # Hindi (Devanagari) fonts
 ├── meeting_outputs/        # Generated reports and recordings (auto-created)
 └── bot_session/            # Browser profile data (auto-created)
 ```
@@ -126,6 +125,5 @@ meeting_outputs/
 - **Reasoning**: Anthropic-style prompts on Qwen 2.5.
 
 **Version**: v6.5.0  
-**Status**: Testing
-
+**Status**: Production Ready  
 **Developer**: Chandisha Das
